@@ -1,8 +1,8 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
 use embedded_hal::{
-    delay::blocking::DelayUs,
-    i2c::{blocking::I2c, Error as I2cError},
+    delay::DelayUs,
+    i2c::{Error as I2cError, I2c},
 };
 
 pub use config::*;
