@@ -1,7 +1,7 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
 use embedded_hal::{
-    delay::DelayUs,
+    delay::DelayNs,
     i2c::{Error as I2cError, I2c},
 };
 
@@ -27,7 +27,7 @@ impl<I2C: I2c<Error = E>, E: I2cError> Es8311<I2C> {
         self.i2c
     }
 
-    pub fn init<D: DelayUs>(&mut self, mut delay: D, config: &Config) -> Result<(), Error<E>> {
+    pub fn init<D: DelayNs>(&mut self, mut delay: D, config: &Config) -> Result<(), Error<E>> {
         self.write_reg(Register::ResetReg00, 0x1F)?;
         let _ = delay.delay_us(20);
         self.write_reg(Register::ResetReg00, 0x00)?;
